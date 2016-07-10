@@ -24,44 +24,44 @@
           window.bot.chatUtilities.spam.push(spamWords[i]);
         }
 
-        bot.commands.danceCommand: {
-                command: 'dance',
-                rank: 'user',
-                type: 'startsWith',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                      var msg = chat.message;
-                        var space = msg.indexOf(' ');
-                        if (space === -1) {
-                        basicBot.userUtilities.lookupUserName(name);
-                            var danceNumber = Math.floor(Math.random() * basicBot.chat.dances.length);
-                        API.sendChat(subChat(basicBot.chat.dances[danceNumber], {name: chat.un}));
-                            
-                        }
-                        else {
-                        var pairdanceNumber = Math.floor(Math.random() * basicBot.chat.pairdances.length);
-                            var name2 = msg.substring(space + 1);
-                            basicBot.userUtilities.lookupUserName(name);
-                      API.sendChat(subChat(basicBot.chat.pairdances[pairdanceNumber], {name: chat.un, name2: name2}));
+        bot.commands.danceCommand = {
+          command: 'dance',
+          rank: 'user',
+          type: 'startsWith',
+          functionality: function (chat, cmd) {
+              if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+              if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+              else {
+                var msg = chat.message;
+                  var space = msg.indexOf(' ');
+                  if (space === -1) {
+                  basicBot.userUtilities.lookupUserName(name);
+                      var danceNumber = Math.floor(Math.random() * basicBot.chat.dances.length);
+                  API.sendChat(subChat(basicBot.chat.dances[danceNumber], {name: chat.un}));
                       
-                    }
-                }
+                  }
+                  else {
+                  var pairdanceNumber = Math.floor(Math.random() * basicBot.chat.pairdances.length);
+                      var name2 = msg.substring(space + 1);
+                      basicBot.userUtilities.lookupUserName(name);
+                API.sendChat(subChat(basicBot.chat.pairdances[pairdanceNumber], {name: chat.un, name2: name2}));
+                
+              }
             }
+          }
         },
             
-        bot.commands.maowCommand: {
+        bot.commands.maowCommand = {
           command: 'maow',
-                rank: 'user',
-                type: 'exact',
-                functionality: function (chat, cmd) {
-                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
-                    else {
-                      API.sendChat(subChat(basicBot.chat.maow));
-                    }
-                }
+          rank: 'user',
+          type: 'exact',
+          functionality: function (chat, cmd) {
+              if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+              if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+              else {
+                API.sendChat(subChat(basicBot.chat.maow));
+              }
+          }
         },
 
         // Load the chat package again to account for any changes
