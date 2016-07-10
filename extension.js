@@ -1,7 +1,7 @@
 (function () {
 
     // Change this to your GitHub username so you don't have to modify so many things.
-    var fork = "basicBot";
+    var fork = "TyZeff";
 
     // Define our function responsible for extending the bot.
     function extend() {
@@ -24,19 +24,46 @@
           window.bot.chatUtilities.spam.push(spamWords[i]);
         }
 
-        // Example code for a bot command:
-        bot.commands.baconCommand = {
-          command: 'bacon',  // The command to be called. With the standard command literal this would be: !bacon
-          rank: 'user', // Minimum user permission to use the command
-          type: 'exact', // Specify if it can accept variables or not (if so, these have to be handled yourself through the chat.message
-          functionality: function (chat, cmd) {
-            if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
-            if (!bot.commands.executable(this.rank, chat)) return void (0);
-            else {
-              API.sendChat("/me Bacon!!!");
+            
+        danceCommand: {
+                command: 'dance',
+                rank: 'user',
+                type: 'startsWith',
+                functionality: function (chat, cmd) {
+                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+                    else {
+                      var msg = chat.message;
+                        var space = msg.indexOf(' ');
+                        if (space === -1) {
+                        basicBot.userUtilities.lookupUserName(name);
+                            var danceNumber = Math.floor(Math.random() * basicBot.chat.dances.length);
+                        API.sendChat(subChat(basicBot.chat.dances[danceNumber], {name: chat.un}));
+                            
+                        }
+                        else {
+                        var pairdanceNumber = Math.floor(Math.random() * basicBot.chat.pairdances.length);
+                            var name2 = msg.substring(space + 1);
+                            basicBot.userUtilities.lookupUserName(name);
+                      API.sendChat(subChat(basicBot.chat.pairdances[pairdanceNumber], {name: chat.un, name2: name2}));
+                      
+                    }
+                }
             }
-          }
-        };
+        },
+            
+        maowCommand: {
+          command: 'maow',
+                rank: 'user',
+                type: 'exact',
+                functionality: function (chat, cmd) {
+                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+                    else {
+                      API.sendChat(subChat(basicBot.chat.maow));
+                    }
+                }
+        },
 
         // Load the chat package again to account for any changes
         bot.loadChat();
@@ -46,9 +73,9 @@
     //Change the bots default settings and make sure they are loaded on launch
 
     localStorage.setItem("basicBotsettings", JSON.stringify({
-      botName: "basicBot",
+      botName: "=^.°.^= MofChillout bot",
       language: "english",
-      chatLink: "https://rawgit.com/basicBot/source/master/lang/en.json",
+      chatLink: "https://rawgit.com/" + fork + "/MoC-plugdj-Bot/master/lang/en.json",
       scriptLink: "https://rawgit.com/basicBot/source/master/basicBot.js",
       roomLock: false, // Requires an extension to re-load the script
       startupCap: 1, // 1-200
@@ -68,11 +95,11 @@
       maximumLocktime: 10,
       cycleGuard: true,
       maximumCycletime: 10,
-      voteSkip: false,
-      voteSkipLimit: 10,
+      voteSkip: true,
+      voteSkipLimit: 5,
       historySkip: false,
       timeGuard: true,
-      maximumSongLength: 10,
+      maximumSongLength: 15,
       autodisable: true,
       commandCooldown: 30,
       usercommandsEnabled: true,
@@ -95,19 +122,19 @@
       etaRestriction: false,
       welcome: true,
       opLink: null,
-      rulesLink: null,
+      rulesLink: "http://www.masterofchillout.com/genres",
       themeLink: null,
-      fbLink: null,
-      youtubeLink: null,
-      website: null,
+      fbLink: "https://www.facebook.com/MoChillout/",
+      youtubeLink: "https://www.youtube.com/channel/UCP539KDKw8uOJiR-VDu3CIA",
+      website: "http://www.masterofchillout.com/",
       intervalMessages: [],
-      messageInterval: 5,
-      songstats: true,
+      messageInterval: 30,
+      songstats: false,
       commandLiteral: "!",
       blacklists: {
-        NSFW: "https://rawgit.com/basicBot/custom/master/blacklists/NSFWlist.json",
-        OP: "https://rawgit.com/basicBot/custom/master/blacklists/OPlist.json",
-        BANNED: "https://rawgit.com/basicBot/custom/master/blacklists/BANNEDlist.json"
+          NSFW: "https://rawgit.com/" + fork + "/MoC-plugdj-Bot/master/blacklists/NSFWlist.json",
+          OP: "https://rawgit.com/" + fork + "/MoC-plugdj-Bot/master/blacklists/OPlist.json",
+          troll: "https://rawgit.com/" + fork + "/MoC-plugdj-Bot/master/blacklists/Trolllist.json"
       }
     }));
 

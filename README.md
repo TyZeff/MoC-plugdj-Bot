@@ -1,4 +1,4 @@
-# basicBot (custom)
+# Mater of Chillout plug.dj Bot
 > A not so basic bot for plug.dj
 
 ---
@@ -40,3 +40,4 @@ bot.logNewBlacklistedSongs(); //get a list
 Copyright
 ---------
 Copyright &copy; 2014-2016 basicBot
+Copyright &copy; 2016 Extended by TyZeff
