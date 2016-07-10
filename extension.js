@@ -24,8 +24,7 @@
           window.bot.chatUtilities.spam.push(spamWords[i]);
         }
 
-            
-        danceCommand: {
+        bot.commands.danceCommand: {
                 command: 'dance',
                 rank: 'user',
                 type: 'startsWith',
@@ -52,7 +51,7 @@
             }
         },
             
-        maowCommand: {
+        bot.commands.maowCommand: {
           command: 'maow',
                 rank: 'user',
                 type: 'exact',
