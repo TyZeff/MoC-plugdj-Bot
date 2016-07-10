@@ -3,6 +3,9 @@
 	
 	"help": "\/me Useful commands: !dance !maow !skip. All commands: http://bit.ly/29Axamq",
 	
+  "welcome": "/me Welcome %%NAME%%, to 'Master of Chillout' Radio! This is your first time here, please read the description of the room. Genres played here: http://masterofchillout.com/genres.",
+	"welcomeback": "/me Welcome back, %%NAME%%!",
+
 	"dances": [
 		"\/me %%NAME%% is doing a moonwalk! On the actual Moon.",
 		"\/me %%NAME%% is rocking! Hold tight!",
