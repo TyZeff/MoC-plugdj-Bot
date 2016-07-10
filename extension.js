@@ -16,6 +16,21 @@
         // Load custom settings set below
         bot.retrieveSettings();
 
+        var subChat = function (chat, obj) {
+          if (typeof chat === "undefined") {
+            API.chatLog("There is a chat text missing.");
+            console.log("There is a chat text missing.");
+            return "[Error] No text message found.";
+
+            // TODO: Get missing chat messages from source.
+          }
+          var lit = '%%';
+          for (var prop in obj) {
+            chat = chat.replace(lit + prop.toUpperCase() + lit, obj[prop]);
+          }
+          return chat;
+        };
+
         //Extend the bot here, either by calling another function or here directly.
 
         // You can add more spam words to the bot.
@@ -37,14 +52,14 @@
                   if (space === -1) {
                   bot.userUtilities.lookupUserName(name);
                       var danceNumber = Math.floor(Math.random() * bot.chat.dances.length);
-                  API.sendChat(bot.subChat(bot.chat.dances[danceNumber], {name: chat.un}));
+                  API.sendChat(subChat(bot.chat.dances[danceNumber], {name: chat.un}));
                       
                   }
                   else {
                   var pairdanceNumber = Math.floor(Math.random() * bot.chat.pairdances.length);
                       var name2 = msg.substring(space + 1);
                       bot.userUtilities.lookupUserName(name);
-                API.sendChat(bot.subChat(bot.chat.pairdances[pairdanceNumber], {name: chat.un, name2: name2}));
+                API.sendChat(subChat(bot.chat.pairdances[pairdanceNumber], {name: chat.un, name2: name2}));
                 
               }
             }
@@ -59,7 +74,7 @@
               if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
               if (!bot.commands.executable(this.rank, chat)) return void (0);
               else {
-                API.sendChat(bot.subChat(bot.chat.maow));
+                API.sendChat(subChat(bot.chat.maow));
               }
           }
         },
